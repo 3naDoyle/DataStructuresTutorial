@@ -19,6 +19,7 @@ import execute.TestArrayList;
 class Test_ArrayList {
 	ArrayList testList;
 
+	
 
 	/**
 	 * @throws java.lang.Exception
