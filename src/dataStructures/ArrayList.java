@@ -29,7 +29,10 @@ public class ArrayList<E> implements List<E> {
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal Capacity: "+
                                                initialCapacity);
-        this.data = (E[])new Object[initialCapacity];
+        
+        
+        this.setSize(initialCapacity); //
+        this.data = (E[])new Object[size()];
     }
 
     /**
@@ -47,6 +50,10 @@ public class ArrayList<E> implements List<E> {
 	@Override
 	public int size() {
 		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	@Override
