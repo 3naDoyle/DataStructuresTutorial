@@ -12,17 +12,7 @@ Email me with questions and/or queries.
 
 ## JUnit Tests
 
-You will need <b>JUnit 5</b> for unit test-execution.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-
+JUnit test execution requires <b>JUnit 5</b>.
 
 ## Author
 

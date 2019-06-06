@@ -78,7 +78,7 @@ public class ArrayList<E> implements List<E> {
 			"Index: "+index+", Size: "+size);
 
 		if (index > size)
-			ensureCapacity(index);
+			ensureCapacity();
 		
 //		System.arraycopy(data, index, data, index+1, size-index);	//org		
 			int length = data.length;
