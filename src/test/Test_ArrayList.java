@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dataStructures.ArrayList;
+import dataStructures.List;
 import execute.TestArrayList;
 
 /**
@@ -17,9 +18,9 @@ import execute.TestArrayList;
  *
  */
 class Test_ArrayList {
-	ArrayList testList;
+	List<Integer> testList_int = new ArrayList<Integer>();
+	List<String> testList_string = new ArrayList<String>();
 
-	
 
 	/**
 	 * @throws java.lang.Exception
@@ -39,40 +40,58 @@ class Test_ArrayList {
 
 	@Test
 	void instanciateWithSpecifiedSize() {	
-		//default (not empty)
-		testList = new ArrayList();
-		assertFalse(testList.isEmpty());
+		//default (not empty) 
+		testList_int = new ArrayList();
+		assertFalse(testList_int.isEmpty());
 
 		int initialSize=1;
-		testList = new ArrayList(initialSize);
-		assertFalse(testList.isEmpty());
-		assertEquals(1, testList.size());
+		testList_int = new ArrayList(initialSize);
+		assertFalse(testList_int.isEmpty());
+		assertEquals(1, testList_int.size());
 
 		initialSize=10;
-		testList = new ArrayList(initialSize);
-		assertFalse(testList.isEmpty());
-		assertEquals(10, testList.size());	
+		testList_int = new ArrayList(initialSize);
+		assertFalse(testList_int.isEmpty());
+		assertEquals(10, testList_int.size());	
 
 		//out-size
 		initialSize=1000000;
-		testList = new ArrayList(initialSize);
-		assertFalse(testList.isEmpty());
-		assertEquals(1000000, testList.size());
+		testList_int = new ArrayList(initialSize);
+		assertFalse(testList_int.isEmpty());
+		assertEquals(1000000, testList_int.size());
 
 		//zero initial size
 		initialSize=0;
-		testList = new ArrayList(initialSize);
-		assertEquals(0, testList.size());
-		assertTrue(testList.size()==0);
-		assertTrue(testList.isEmpty());
+		testList_int = new ArrayList(initialSize);
+		assertEquals(0, testList_int.size());
+		assertTrue(testList_int.size()==0);
+		assertTrue(testList_int.isEmpty());
 		
 		//negative initial-size -> throws illegal exception
 		int negSize=-5;
 		 assertThrows(IllegalArgumentException.class, () -> {			 
-			 testList = new ArrayList(negSize);
+			 testList_int = new ArrayList(negSize);
 			 });	
 	}
 	
+	
+	@Test
+	void addElement() {	
+		int arr_size = testList_string.size();
+		String value = "Silly String";
+		
+		//assert array contains added value
+		testList_string.add(value);
+		assertTrue(testList_string.contains(value));
+		
+		//assert size of array has increase by 1
+		arr_size++;
+		assertEquals(arr_size, testList_string.size());
+		
+		//assert value has been added to END of array
+		assertEquals(testList_string.indexOf("Silly String"),arr_size-1);	
+		
+	}
 	
 	
 	

@@ -1,5 +1,7 @@
 package dataStructures;
 
+import java.util.Arrays;
+
 /**
  * Resizable-array implementation of the <tt>List</tt> interface.  Implements
  * all list operations, and permits all elements, including <tt>null</tt>.
@@ -65,8 +67,8 @@ public class ArrayList<E> implements List<E> {
 	}
 
 	@Override
-	public void add(E element) {
-		add(size, element);
+	public void add(E element) {	
+		add(size,element);
 	}
 
 	@Override
@@ -76,9 +78,13 @@ public class ArrayList<E> implements List<E> {
 			"Index: "+index+", Size: "+size);
 
 		if (index > size)
-			ensureCapacity();
+			ensureCapacity(index);
 		
-		System.arraycopy(data, index, data, index + 1, size - index);
+//		System.arraycopy(data, index, data, index+1, size-index);	//org		
+			int length = data.length;
+		 data = Arrays.copyOf(data, data.length + 1);
+		 length = data.length;
+
 		
 		data[index] = element;
 		size++;
@@ -208,11 +214,12 @@ public class ArrayList<E> implements List<E> {
      * Increases the capacity of this <tt>ArrayList</tt> instance, if
      * necessary, to ensure that it can hold the elements
      */
+    
     private void ensureCapacity() {
 		@SuppressWarnings("unchecked")
 		E [] newData = (E[])new Object[data.length * 2];
 		
-		System.arraycopy(data, 0, newData, 0, size);
+		System.arraycopy(data, 0, newData, 0, newData.length);
 			
 		data = newData;
     }
