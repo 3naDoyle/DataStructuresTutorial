@@ -76,11 +76,11 @@ class Test_ArrayList {
 	
 	
 	@Test
-	void addElement() {	
+	void testAddElement() {	
 		int arr_size = testList_string.size();
 		String value = "Silly String";
 		
-		//assert array contains added value
+		//assert array contains the added value
 		testList_string.add(value);
 		assertTrue(testList_string.contains(value));
 		
@@ -91,9 +91,23 @@ class Test_ArrayList {
 		//assert value has been added to END of array
 		assertEquals(testList_string.indexOf("Silly String"),arr_size-1);	
 		
+		//assert value is added to specific index
+		value = "Joke book";
+		int index = 3;
+		testList_string.add(index,value);
+		assertEquals(index,testList_string.indexOf(value));
+		
+		//assert out-of-bounds exception when index > size
+		 assertThrows(IndexOutOfBoundsException.class, () -> {			 
+				testList_string.add(25,"test value");
+			 });		
+		
 	}
 	
 	
-	
+	void testRemoveElement() {	
+		
+	}
+
 
 }
