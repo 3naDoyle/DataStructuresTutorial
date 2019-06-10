@@ -19,7 +19,7 @@ import execute.TestArrayList;
  */
 class Test_ArrayList {
 	List<Integer> testList_int = new ArrayList<Integer>();
-	List<String> testList_string = new ArrayList<String>();
+	List<String> testList_string = new ArrayList<String>(5);
 
 
 	/**
@@ -40,7 +40,7 @@ class Test_ArrayList {
 
 	@Test
 	void instanciateWithSpecifiedSize() {	
-		//default (not empty) 
+		//default (not empty) created with a default size
 		testList_int = new ArrayList();
 		assertFalse(testList_int.isEmpty());
 
@@ -67,7 +67,7 @@ class Test_ArrayList {
 		assertTrue(testList_int.size()==0);
 		assertTrue(testList_int.isEmpty());
 		
-		//negative initial-size -> throws illegal exception
+		//negative initial-size - throws illegal exception
 		int negSize=-5;
 		 assertThrows(IllegalArgumentException.class, () -> {			 
 			 testList_int = new ArrayList(negSize);
@@ -97,6 +97,12 @@ class Test_ArrayList {
 		testList_string.add(index,value);
 		assertEquals(index,testList_string.indexOf(value));
 		
+		//assert adding a value to ArrayList may not overwrite existing value
+		 assertThrows(IllegalAccessError.class, () -> {			 
+				testList_string.add(3,"something else");
+			 });
+		
+		
 		//assert out-of-bounds exception when index > size
 		 assertThrows(IndexOutOfBoundsException.class, () -> {			 
 				testList_string.add(25,"test value");
@@ -104,9 +110,61 @@ class Test_ArrayList {
 		
 	}
 	
-	
+	@Test
 	void testRemoveElement() {	
+		testList_string = new ArrayList<String>(0);
+		testList_string.add("a");
+		testList_string.add("stitch");
+		testList_string.add("in");
+		testList_string.add("time");
+		testList_string.add("saves");
+		testList_string.add("nine");
+		System.out.println(testList_string);
+	
+		int size_before = testList_string.size();
+		int index = testList_string.indexOf("time");
+		assertEquals(testList_string.get(3),"time");
+		assertTrue(testList_string.contains("time"));
 		
+		//remove from specific index
+		testList_string.remove(index);
+		assertFalse(testList_string.contains("time"));
+		assertNotEquals(testList_string.get(3),"time");
+		assertEquals(testList_string.size(),size_before-1);
+		System.out.println(testList_string);
+		
+		//remove with boolean check
+		assertTrue(testList_string.remove("nine"));
+		assertFalse(testList_string.contains("nine"));
+	
+	}
+	
+	@Test
+	void testSet() {
+		testList_string = new ArrayList<String>(5);
+		testList_string.add(0,"That's");
+		testList_string.set(1, "the");
+		testList_string.add(2,"life");		
+		assertFalse(testList_string.contains("way"));
+		//set index 2 
+		testList_string.set(2, "way");
+		assertTrue(testList_string.contains("way"));
+		assertEquals(testList_string.get(2),"way");
+
+		
+	}
+	
+	@Test
+	void testClear() {
+		testList_string = new ArrayList<String>(10);
+		testList_string.add("world");
+		testList_string.add("wide");
+		testList_string.add("web");
+		assertFalse(testList_string.isEmpty());
+		//clear
+		testList_string.clear();
+		assertTrue(testList_string.isEmpty());
+
 	}
 
 
