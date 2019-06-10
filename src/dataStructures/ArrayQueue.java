@@ -58,20 +58,9 @@ public class ArrayQueue<E> implements Queue<E> {
 		
 		Q[r]=element;
 		
-		r=(r+1)%(Q.length);
-		
-		System.out.println("Values in Queue");
-		for(int i=0;i<Q.length;i++){
-			
-			System.out.println("Values at index "+i+" is "+Q[i]);
-		}
-		
-		
-		
+		r=(r+1)%(Q.length);	 // % [Modulus] Divides left-hand value by right-hand value and returns remainder. 
 		size++;
-		
-		System.out.println("Front = "+Q[f]);
-		System.out.println("Rear = "+Q[r]);
+
 		
 	}
 
@@ -112,6 +101,31 @@ public class ArrayQueue<E> implements Queue<E> {
 		
 		
     }
+	
+	
+	public String toString() {
+		
+		String valueString= "[ ";
+		for(int i=0;i<Q.length;i++){
+			valueString = valueString +Q[i]+" ";
+		};
+		
+		return valueString+"]";
+		
+	}
+	
+	
 
+    // view front of queue 
+    public E getFrontElement() 
+    { 
+        return Q[f];
+        
+    }
+
+    
+    public E getRearElement() {
+    	return Q[r-1];
+    }
 
 }
